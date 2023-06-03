@@ -1,0 +1,22 @@
+{% extends 'main/general.html' %}
+
+
+{% block title %}
+Редактирование аккаунта
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+  <h1>Редактирование аккаунта: </h1>
+  <form method="post">
+    {% csrf_token %}
+    {{form.username}}<br>
+    {{form.email}}<br>
+    {{form.first_name}}<br>
+    {{form.last_name}}<br>
+    <span>{{ error }}</span>
+    <button class="btn btn-success" type="submit">Сохранить</button>
+  </form>
+</div>
+{% endblock %}

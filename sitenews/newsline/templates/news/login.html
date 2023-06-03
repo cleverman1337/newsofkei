@@ -1,0 +1,20 @@
+{% extends 'main/general.html' %}
+{% block content %}
+
+{% block title %}
+Вход в аккаунт
+{% endblock %}
+
+{% if form.errors %}
+<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+    <p>Ошибка! Данные были введены некорректно.</p>
+</div>
+{% endif %}
+<div class="features3">
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button class="btn btn-success" type="submit">Войти</button>
+</form>
+</div>
+{% endblock %}
