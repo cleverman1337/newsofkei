@@ -1,0 +1,57 @@
+{% extends 'main/general.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'main/main.css' %}">
+{% block title %}
+Новость
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="styles.css">
+{% endblock %}
+
+{% block content %}
+<div class="features_details_view">
+
+
+    <h1>{{ article.title }}</h1>
+
+
+    <p>{{ article.text_in_box}}</p>
+    {% if article.imgurl %}
+    <img src="{% static article.imgurl %}" alt="{{ article.title }}" class="img-fluid mx-auto d-block"style="max-height: 700px;  margin: 10px;">
+{% endif %}
+
+    {% if user.is_staff %}
+<a href="{% url 'news-delete' article.id %}" class="btn btn-danger"style="margin-left: 40%;">Удалить</a>
+{% endif %}
+
+    {% if user.is_staff %}
+<a href="{% url 'news-update' article.id %}"class="btn btn-info">Редактировать</a>
+{% endif %}
+
+{% if user.is_authenticated %}
+<form method="post" action="{% url 'like_article' article.id %}">
+  {% csrf_token %}
+  <button class="btn btn-success" type="submit" name="action" value="like"><i class="fas fa-thumbs-up"></i></button>
+  {{ article.likes }}
+  <button class="btn btn-danger" type="submit" name="action" value="dislike"><i class="fas fa-thumbs-down"></i></button>
+  {{ article.dislikes }}
+</form>
+{% endif %}
+
+</div>
+{% endblock %}
+{% block button %}
+<link rel="stylesheet" type="text/css" href="{% static 'newsline/css/newsline.css' %}">
+<div class="container">
+<div class="category-buttons">
+  <a class="category-button" href="{% url 'category_articles' category_slug='education' %}">Образование</a>
+  <a class="category-button" href="{% url 'category_articles' category_slug='sport' %}">Спорт</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='culture' %}">Культура</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='science' %}">Наука</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='society' %}">Общество</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='business'%}">Бизнес</a>
+</div>
+</div>>
+
+            {% endblock%}

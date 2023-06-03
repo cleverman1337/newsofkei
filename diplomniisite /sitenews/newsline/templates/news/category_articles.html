@@ -1,0 +1,43 @@
+{% extends 'main/general.html' %}
+{% load static  %}
+{% block title %}
+{{ category.name }}
+{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>{{ category.name }}</h1>
+    {% if articles %}
+        {% for article in articles %}
+
+    <img src="{% static el.imgurl %}" alt="{{ el.title }}"  >
+        <div class="alert alert-light">
+             {% if article.imgurl %}
+    <img src="{% static article.imgurl %}" alt="{{ article.title }}" style="max-width: 100%; max-height: 200px; float: right">
+{% endif %}
+
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.anons }}</p>
+            <a href="{% url 'news-detail' article.id %}"class="btn btn-warning">Подробнее</a>
+    </div>
+        {% endfor %}
+    {% else %}
+        <p>Статьи отсутствуют</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+{% block button %}
+<link rel="stylesheet" type="text/css" href="{% static 'newsline/css/newsline.css' %}">
+<div class="container">
+<div class="category-buttons">
+  <a class="category-button" href="{% url 'category_articles' category_slug='education' %}">Образование</a>
+  <a class="category-button" href="{% url 'category_articles' category_slug='sport' %}">Спорт</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='culture' %}">Культура</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='science' %}">Наука</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='society' %}">Общество</a>
+    <a class="category-button" href="{% url 'category_articles' category_slug='business'%}">Бизнес</a>
+</div>
+</div>>
+
+            {% endblock%}

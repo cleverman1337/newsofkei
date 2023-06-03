@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Импорт статей из VK</title>
+</head>
+<body>
+    <h1>Импорт статей из VK прошел успешно!</h1>
+    <form action="{% url 'import_articles' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Импортировать статьи">
+
+        <p><a href="{% url 'news_home' %}">Вернуться к новостям</a></p>
+    </form>
+</body>
+</html>
