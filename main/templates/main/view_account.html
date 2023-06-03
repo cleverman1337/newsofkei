@@ -1,0 +1,17 @@
+{% extends 'main/general.html' %}
+
+{% block title %}
+Аккаунт
+{% endblock %}
+
+{% block content %}
+<div class="features4">
+  <h1>Данные аккаунта:</h1>
+  <p><strong>Никнейм:</strong> {{ user.username }}</p>
+  <p><strong>Email-почта:</strong> {{ user.email }}</p>
+  <p><strong>Имя:</strong> {{ user.first_name }}</p>
+  <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+  <span>{{ error }}</span>
+  <a href="{% url 'edit_account' %}"class="btn btn-info" style="margin-left: 500  manapx;">Внести правки</a>
+</div>
+{% endblock %}
